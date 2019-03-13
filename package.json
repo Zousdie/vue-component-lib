@@ -1,0 +1,41 @@
+{
+  "name": "vue-component-lib",
+  "version": "0.1.0",
+  "description": "Vue component library demo",
+  "keywords": [
+    "Vue",
+    "component",
+    "library"
+  ],
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zousdie/vue-component-lib.git"
+  },
+  "author": "Jialiang T. (rememhe@outlook.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Zousdie/vue-component-lib/issues"
+  },
+  "homepage": "https://github.com/Zousdie/vue-component-lib#readme",
+  "dependencies": {
+    "@babel/runtime": "^7.3.4"
+  },
+  "peerDependencies": {
+    "vue": ">= 2.5.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-transform-runtime": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-typescript": "^7.3.3",
+    "eslint": "^5.15.1",
+    "stylelint": "^9.10.1"
+  }
+}
