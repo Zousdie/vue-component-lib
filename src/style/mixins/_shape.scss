@@ -1,0 +1,65 @@
+// size 辅助
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+// 图形：圆
+@mixin circle($size, $color: transparent) {
+  background: $color;
+  border-radius: 50%;
+
+  @include size($size);
+}
+
+// 图形：三角（默认正三角形）
+@mixin triangle(
+  $direc,
+  $color: transparent,
+  $bottom: 1em,
+  $height: $bottom * 1.732 / 2
+) {
+  border-color: transparent;
+  border-style: solid;
+  border-width: $bottom/2;
+
+  border-#{$direc}-style: none;
+  border-#{$direc}-width: 0;
+
+  @if ($direc == top) {
+    border-bottom-color: $color;
+    border-bottom-width: $height;
+  } @else if($direc == bottom) {
+    border-top-color: $color;
+    border-top-width: $height;
+  } @else if($direc == left) {
+    border-right-color: $color;
+    border-right-width: $height;
+  } @else if($direc == right) {
+    border-left-color: $color;
+    border-left-width: $height;
+  } @else {
+    @warn "Undefeined direction: `#{$direc}`";
+  }
+
+  @include size(0);
+
+  @content;
+}
+
+// 图形：箭头
+// 在元素上生成一个三角箭头，默认高是底的一半，父级元素的 position 不能为 static
+@mixin arrow(
+  $direc,
+  $color: transparent,
+  $bottom: 1em,
+  $height: $bottom / 2,
+  $pseudo: before
+) {
+  &::#{$pseudo} {
+    position: absolute;
+    content: "";
+    @include triangle($direc, $color, $bottom, $height);
+    @content;
+  }
+}

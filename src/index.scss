@@ -1,0 +1,11 @@
+// This file is auto gererated by build/build-entry.js
+
+// global and base styles
+@import "style/global";
+@import "base";
+
+// component styles
+@import "./packages/by-js";
+@import "./packages/by-tree-dep";
+@import "./packages/by-tsx";
+@import "./packages/icon";

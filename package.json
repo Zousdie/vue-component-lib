@@ -7,46 +7,130 @@
     "component",
     "library"
   ],
-  "directories": {
-    "doc": "docs",
-    "test": "test"
-  },
-  "scripts": {
-    "bootstrap": "npm i",
-    "lint": "eslint ./packages --ext .js,.jsx,.ts,.tsx,.vue && stylelint packages/**/*.scss"
-  },
+  "author": "Jialiang T. (rememhe@outlook.com)",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Zousdie/vue-component-lib.git"
   },
-  "author": "Jialiang T. (rememhe@outlook.com)",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Zousdie/vue-component-lib/issues"
   },
   "homepage": "https://github.com/Zousdie/vue-component-lib#readme",
+  "files": [
+    "esm",
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "style": "lib/index.css",
+  "sideEffects": [
+    "*.css",
+    "*.scss"
+  ],
+  "scripts": {
+    "bootstrap": "npm i",
+    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx,.vue && stylelint src/**/*.scss",
+    "build:entry": "node build/build-entry.js",
+    "build:script": "rollup -c build/rollup.config.js --environment NODE_ENV:production,BABEL_TARGET:lib",
+    "build:style": "gulp --gulpfile build/gulpfile.style.js",
+    "build:style-entry": "node build/build-dep-style.js",
+    "build:lib": "cross-env NODE_ENV=production BABEL_TARGET=lib webpack --colors --config build/webpack.lib.js",
+    "build": "node build/build.js",
+    "clean": "rm -rf esm & rm -rf lib",
+    "lint:docs": "eslint ./docs/src --ext .js,.jsx,.ts,.tsx,.vue && stylelint src/**/*.scss",
+    "dev": "cross-env NODE_ENV=development BABEL_TARGET=app webpack-dev-server --colors --config build/webpack.docs.dev.js",
+    "predev": "npm run build:entry",
+    "build:docs": "cross-env NODE_ENV=production BABEL_TARGET=app webpack --colors --config build/webpack.docs.prod.js",
+    "prebuild:docs": "npm run build:entry & rm -rf dist"
+  },
   "dependencies": {
-    "@babel/runtime": "^7.3.4"
+    "@babel/runtime": "^7.4.3",
+    "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0-beta.3"
   },
   "peerDependencies": {
     "vue": ">= 2.6.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "@babel/plugin-transform-runtime": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-syntax-jsx": "^7.2.0",
+    "@babel/plugin-transform-object-assign": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.4.3",
+    "@babel/polyfill": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
     "@babel/preset-typescript": "^7.3.3",
-    "@typescript-eslint/eslint-plugin": "^1.4.2",
-    "@typescript-eslint/parser": "^1.4.2",
-    "eslint": "^5.15.1",
+    "@babel/runtime-corejs2": "^7.4.3",
+    "@typescript-eslint/eslint-plugin": "^1.6.0",
+    "@typescript-eslint/parser": "^1.6.0",
+    "@vue/babel-preset-jsx": "^1.0.0-beta.3",
+    "autoprefixer": "^9.5.0",
+    "babel-loader": "^8.0.5",
+    "cache-loader": "^2.0.1",
+    "chalk": "^2.4.2",
+    "copy-webpack-plugin": "^5.0.2",
+    "core-js": "^2.6.5",
+    "cross-env": "^5.2.0",
+    "css-loader": "^2.1.1",
+    "cssnano": "^4.1.10",
+    "dependency-tree": "^7.0.2",
+    "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-import-resolver-webpack": "^0.11.0",
+    "eslint-loader": "^2.1.2",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-vue": "^5.2.2",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "fs-extra": "^7.0.1",
+    "gulp": "^4.0.0",
+    "gulp-postcss": "^8.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-stylelint": "^8.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.5",
+    "mini-css-extract-plugin": "^0.5.0",
+    "node-sass-package-importer": "^5.3.1",
+    "postcss": "^7.0.14",
+    "postcss-loader": "^3.0.0",
+    "rollup": "^1.8.0",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.3.0",
+    "rollup-plugin-eslint": "^5.1.0",
+    "rollup-plugin-node-resolve": "^4.0.1",
+    "rollup-plugin-vue": "^4.7.2",
+    "sass": "^1.17.4",
+    "sass-loader": "^7.1.0",
+    "shelljs": "^0.8.3",
+    "style-loader": "^0.23.1",
     "stylelint": "^9.10.1",
     "stylelint-config-recess-order": "^2.0.1",
     "stylelint-config-recommended-scss": "^3.2.0",
     "stylelint-scss": "^3.5.4",
-    "typescript": "^3.3.3333",
-    "vue": "^2.6.8"
+    "typescript": "^3.4.1",
+    "uppercamelcase": "^3.0.0",
+    "vue": "^2.6.10",
+    "vue-loader": "^15.7.0",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1",
+    "webpack-merge": "^4.2.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "eslint",
+      "git add"
+    ],
+    "*.{vue,css}": [
+      "stylelint",
+      "git add"
+    ]
   }
 }

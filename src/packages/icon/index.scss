@@ -1,0 +1,18 @@
+@import "../../style/global";
+
+$icon-animations: (
+  "rotate": rotating 1.5s linear infinite
+);
+
+@include b(icon) {
+  overflow: hidden;
+  fill: currentColor;
+
+  @include size(1em);
+
+  @each $name, $value in $icon-animations {
+    @include when($name) {
+      animation: $value;
+    }
+  }
+}

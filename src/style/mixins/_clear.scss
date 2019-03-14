@@ -1,0 +1,11 @@
+// 伪类辅助清除浮动
+@mixin clear($d: both) {
+  &::after {
+    display: block;
+    height: 0;
+    clear: $d;
+    line-height: 0;
+    visibility: hidden;
+    content: "";
+  }
+}

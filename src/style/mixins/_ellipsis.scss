@@ -1,0 +1,16 @@
+// 省略文本
+@mixin ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 多行省略文本
+@mixin multi-ellipsis($lines) {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: $lines;
+  /* autoprefixer: ignore next */
+  -webkit-box-orient: vertical;
+}

@@ -1,0 +1,41 @@
+@import "global";
+
+* {
+  box-sizing: content-box;
+}
+
+body {
+  margin: 0;
+  font-family: $--font-family;
+}
+
+a {
+  text-decoration: none;
+  background: transparent;
+}
+
+input,
+button,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+a,
+input,
+button,
+textarea {
+  &:focus {
+    outline: none;
+  }
+}
+
+ol,
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+@import "comm/animations";
+@import "comm/transition";

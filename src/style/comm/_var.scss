@@ -1,0 +1,56 @@
+// font
+$--font-family: "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI",
+  "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue",
+  Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+  "Segoe UI Symbol" !default;
+
+// z-index
+$--index-normal: 1 !default;
+$--index-top: 1000 !default;
+$--index-popper: 2000 !default;
+
+// color
+$--color-white: #fff !default;
+$--color-black: #000 !default;
+$--color-primary: #4f82ff !default;
+$--color-success: #67c23a !default;
+$--color-warning: #e6a23c !default;
+$--color-danger: #f56c6c !default;
+$--color-info: #909399 !default;
+
+// background-color
+$--bg-color-base: #f6f8fc !default;
+$--bg-color-active: #e8e8e8 !default;
+$--bg-color-active-light: $--color-white !default;
+
+// border
+$--border-septal: 1px solid #eaebec !default;
+
+// border-radius
+$--border-radius-button: 4px !default;
+$--border-radius-picture: 4px !default;
+
+// text
+$--color-text-header: #34404d !default;
+$--color-text-base: #646d77 !default;
+$--color-text-assist: #949aa1 !default;
+$--color-text-disable: #c3c7cb !default;
+$--color-text-placeholder: #c3c7cb !default;
+
+// font-size
+$--font-size-header: 20px !default;
+$--font-size-major: 18px !default;
+$--font-size-minor: 16px !default;
+$--font-size-base: 14px !default;
+$--font-size-assist: 12px !default;
+
+// font-weight
+$--font-weight-header: 500;
+$--font-weight-base: 400;
+
+// line-height
+$--line-height-header: 28px !default;
+$--line-height-major: 26px !default;
+$--line-height-minor: 22px !default;
+$--line-height-base: 20px !default;
+$--line-height-assist: 20px !default;

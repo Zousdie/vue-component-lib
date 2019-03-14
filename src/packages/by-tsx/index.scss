@@ -1,0 +1,7 @@
+@import "../../style/global";
+
+@include b(by-tsx) {
+  font-size: 30px;
+  color: $--color-danger;
+  text-align: center;
+}

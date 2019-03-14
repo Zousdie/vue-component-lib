@@ -5,14 +5,14 @@ module.exports = {
 
   extends: ['airbnb-base', 'plugin:vue/recommended'],
 
+  plugins: ['@typescript-eslint'],
+
   parserOptions: {
     parser: '@typescript-eslint/parser',
     ecmaVersion: 2018,
     sourceType: 'module',
     extraFileExtensions: ['.vue']
   },
-
-  plugins: ['@typescript-eslint'],
 
   env: {
     es6: true,
@@ -25,6 +25,29 @@ module.exports = {
     window: false,
     document: false,
     navigator: false
+  },
+
+  settings: {
+    'import/resolver': {
+      'node': {
+        'extensions': [
+          '.js',
+          '.mjs',
+          '.jsx',
+          '.ts',
+          '.tsx',
+          '.vue'
+        ]
+      }
+    },
+    'import/extensions': [
+      '.js',
+      '.mjs',
+      '.jsx',
+      '.ts',
+      '.tsx',
+      '.vue'
+    ]
   },
 
   rules: {
@@ -45,6 +68,40 @@ module.exports = {
         named: 'always',
         asyncArrow: 'always',
       },
-    ]
+    ],
+    'import/extensions': [
+      'error',
+      'always',
+      {
+        js: 'never',
+        mjs: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never'
+      }
+    ],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        args: 'none'
+      }
+    ],
+    'vue/html-closing-bracket-newline': 2,
+    'vue/singleline-html-element-content-newline': 0,
+    'vue/multiline-html-element-content-newline': 0,
+    'vue/name-property-casing': ['error', 'kebab-case'],
+    'vue/component-name-in-template-casing': ['error', 'kebab-case'],
+    'vue/html-self-closing': [
+      'error',
+      {
+        html: {
+          void: 'never',
+          normal: 'never',
+          component: 'always'
+        },
+        svg: 'never',
+        math: 'never'
+      }
+    ],
   }
 }

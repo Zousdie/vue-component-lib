@@ -1,0 +1,7 @@
+@import "../../style/global";
+
+@include b(by-tree-dep) {
+  display: inline-block;
+  line-height: $--line-height-header;
+  color: $--color-info;
+}

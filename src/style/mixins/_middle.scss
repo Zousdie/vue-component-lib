@@ -1,0 +1,32 @@
+// 绝对定位垂直居中
+@mixin absolute-middle {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+// flex 垂直居中
+@mixin flex-middle {
+  display: flex;
+  align-items: center;
+}
+
+// inline-flex 垂直居中
+@mixin inline-flex-middle {
+  display: inline-flex;
+  align-items: center;
+}
+
+// 伪类辅助垂直居中
+@mixin pseudo-vertical-middle {
+  $sel: &;
+
+  @at-root {
+    #{$sel}::after {
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+      content: "";
+    }
+  }
+}
