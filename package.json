@@ -1,6 +1,7 @@
 {
   "name": "vue-component-lib",
   "version": "0.1.0",
+  "private": true,
   "description": "Vue component library demo",
   "keywords": [
     "Vue",
