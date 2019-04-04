@@ -8,29 +8,34 @@ const chalk = require('chalk');
 
 const taskList = [{
   script: 'clean',
-  msg: chalk.green('1. Clean...'),
+  msg: 'Clean...',
 }, {
   script: 'build:entry',
-  msg: chalk.green('2. Build script and style entry...'),
+  msg: 'Build script and style entry...',
+  back: 'build entry files completed.',
 }, {
   script: 'build:script',
-  msg: chalk.green('3. Compile all script...'),
+  msg: 'Compile all script...',
 }, {
   script: 'build:style',
-  msg: chalk.green('4. Compile all style...'),
+  msg: 'Compile all style...',
 }, {
-  script: 'build:style-entry',
-  msg: chalk.green('5. Build style entry for esm and lib...'),
+  script: 'build:dep-style',
+  msg: 'Build style entry for esm and lib...',
+  back: 'build style entry completed.',
 }, {
   script: 'build:lib',
-  msg: chalk.green('6. Build single file library...'),
+  msg: 'Build single file library...',
 }];
 
-taskList.forEach((task) => {
-  console.log(task.msg);
+taskList.forEach((task, index) => {
+  console.log(chalk.blue(`${index + 1} ${task.msg}`));
   if (shell.exec(`npm run ${task.script} --silent`).code !== 0) {
     shell.echo(chalk.red(`Error: Task running failed: ${task.script}`));
     shell.exit(1);
+  }
+  if (task.back) {
+    console.log(chalk.bgGreen(' DONE '), chalk.green(task.back));
   }
   console.log('\n');
 });

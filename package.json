@@ -34,7 +34,7 @@
     "build:entry": "node build/build-entry.js",
     "build:script": "rollup -c build/rollup.config.js --environment NODE_ENV:production,BABEL_TARGET:lib",
     "build:style": "gulp --gulpfile build/gulpfile.style.js",
-    "build:style-entry": "node build/build-dep-style.js",
+    "build:dep-style": "node build/build-dep-style.js",
     "build:lib": "cross-env NODE_ENV=production BABEL_TARGET=lib webpack --colors --config build/webpack.lib.js",
     "build": "node build/build.js",
     "clean": "rm -rf esm & rm -rf lib",

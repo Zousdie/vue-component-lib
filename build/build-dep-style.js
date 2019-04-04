@@ -52,6 +52,3 @@ components.forEach((item) => {
     fs.outputFileSync(path.join(p, item, 'style', 'scss.js'), formatStyleContent(scss));
   });
 });
-
-// eslint-disable-next-line no-octal-escape
-console.log('\033[42;30m DONE \033[40;32m build style entry completed...\033[0m');

@@ -56,6 +56,3 @@ ${components.map(name => `@import "./packages/${name}";`).join('\n')}
 
 fs.writeFileSync(outPath.concat('/index.ts'), scriptContent);
 fs.writeFileSync(outPath.concat('/index.scss'), styleContent);
-
-// eslint-disable-next-line no-octal-escape
-console.log('\033[42;30m DONE \033[40;32m build entry files completed...\033[0m');
