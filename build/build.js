@@ -29,7 +29,7 @@ const taskList = [{
 }];
 
 taskList.forEach((task, index) => {
-  console.log(chalk.blue(`${index + 1} ${task.msg}`));
+  console.log(chalk.blue(`${index + 1}. ${task.msg}`));
   if (shell.exec(`npm run ${task.script} --silent`).code !== 0) {
     shell.echo(chalk.red(`Error: Task running failed: ${task.script}`));
     shell.exit(1);
