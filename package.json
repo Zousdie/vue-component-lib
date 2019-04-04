@@ -124,11 +124,11 @@
     }
   },
   "lint-staged": {
-    "*.{js,vue}": [
+    "*.{js,jsx,ts,tsx,vue}": [
       "eslint",
       "git add"
     ],
-    "*.{vue,css}": [
+    "*.{scss,sass,css,vue}": [
       "stylelint",
       "git add"
     ]
