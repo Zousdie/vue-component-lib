@@ -24,7 +24,7 @@ export default def({
       default: undefined,
     },
     size: {
-      type: [String, Array],
+      type: [String, () => Array],
       default: undefined,
     },
     rotate: {

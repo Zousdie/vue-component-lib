@@ -1,5 +1,7 @@
-import { VueConstructor, PluginObject } from 'vue';
+import Vue, { VueConstructor, PluginFunction } from 'vue';
 
 declare global {
-  type SFCComponent<T = undefined> = VueConstructor & PluginObject<T>
+  interface SFCComponent<T extends Vue = Vue> extends VueConstructor<T> {
+    install: PluginFunction<undefined>
+  }
 }

@@ -33,8 +33,6 @@ function prefix (name: string, mods: Mods): Mods {
 }
 
 export default function bem (name: string) {
-  name = `${Config.NAMESPACE}-${name}`;
-
   return function (el?: Mods, mods?: Mods) {
     if (el && typeof el !== 'string') {
       mods = el;

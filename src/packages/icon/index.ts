@@ -1,3 +1,3 @@
 import icon from './icon.vue';
 
-export default icon;
+export default <SFCComponent>icon;
