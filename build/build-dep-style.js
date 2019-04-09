@@ -8,6 +8,12 @@ const search = (dt, comDir, style) => {
   let dependentModules = [];
 
   Object.entries(dt).forEach(([key, val]) => {
+    dependentModules = dependentModules.concat(search(val, comDir, style));
+
+    if (!fs.existsSync(path.join(path.dirname(key), 'index.css'))) {
+      return;
+    }
+
     const temp = {};
     Object.entries(style).forEach(([k, v]) => {
       temp[k] = path.relative(
@@ -18,7 +24,6 @@ const search = (dt, comDir, style) => {
     });
 
     dependentModules.push(temp);
-    dependentModules = dependentModules.concat(search(val, comDir, style));
   });
 
   return dependentModules;

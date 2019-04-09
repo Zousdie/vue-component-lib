@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 const uppercamelcase = require('uppercamelcase');
 const packageJson = require('../package.json');
@@ -44,6 +44,7 @@ export default {
 };
 `;
 
+const componentsStyles = components.filter(item => fs.existsSync(path.join(outPath, 'packages', item, 'index.scss')));
 const styleContent = `// This file is auto gererated by build/build-entry.js
 
 // global and base styles
@@ -51,7 +52,7 @@ const styleContent = `// This file is auto gererated by build/build-entry.js
 @import "base";
 
 // component styles
-${components.map(name => `@import "./packages/${name}";`).join('\n')}
+${componentsStyles.map(name => `@import "./packages/${name}";`).join('\n')}
 `;
 
 fs.writeFileSync(outPath.concat('/index.ts'), scriptContent);

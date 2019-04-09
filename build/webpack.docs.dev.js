@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const webpack = require('webpack');
 const merge = require('webpack-merge');
+const openInEditor = require('launch-editor-middleware');
 const docsBase = require('./webpack.docs.base');
 
 module.exports = merge(docsBase.default, {
@@ -31,5 +32,8 @@ module.exports = merge(docsBase.default, {
       errors: true,
     },
     clientLogLevel: 'none',
+    before (app) {
+      app.use('/__open-in-editor', openInEditor());
+    },
   },
 });
