@@ -15,39 +15,39 @@ type DefSfcCallback<T extends Vue = Vue> = (
   vue?: VueConstructor,
   component?: VueConstructor<T>,
   componentName?: string,
-) => void
+) => void;
 
-export default function def<P, E, S> (name: string) {
-  function defSFC<Data = object, Methods = object, Computed = object, Props = P> (
-    options: ThisTypedComponentOptionsWithRecordProps<TsxComponent<P & E & S>, Data, Methods, Computed, Props>,
+export default function def<T extends ITsxComponentGeneric> (name: string) {
+  function defSFC<Data = object, Methods = object, Computed = object, Props = T['Props']> (
+    options: ThisTypedComponentOptionsWithRecordProps<TsxComponent<T>, Data, Methods, Computed, Props>,
     callback?: DefSfcCallback,
-  ): SFCComponent<P & E & S, Data & Methods & Computed & Props & TsxComponent<P & E & S>>;
+  ): SFCComponent<T, Data & Methods & Computed & Props & TsxComponent<T>>;
 
-  function defSFC<Props = P> (
+  function defSFC<Props = T['Props']> (
     options: FunctionalComponentOptions<Props, RecordPropsDefinition<Props>>,
     callback?: DefSfcCallback,
-  ): SFCComponent<P & E & S, Props & TsxComponent<P & E & S>>;
+  ): SFCComponent<T, Props & TsxComponent<T>>;
 
   function defSFC (
     options: ComponentOptions<
-      TsxComponent<P & E & S>,
-      DefaultData<TsxComponent<P & E & S>>,
-      DefaultMethods<TsxComponent<P & E & S>>,
+      TsxComponent<T>,
+      DefaultData<TsxComponent<T>>,
+      DefaultMethods<TsxComponent<T>>,
       DefaultComputed,
-      PropsDefinition<P>,
-      P
+      PropsDefinition<T['Props']>,
+      T['Props']
     >,
     callback?: DefSfcCallback,
-  ): SFCComponent<P & E & S>;
+  ): SFCComponent<T>;
 
   function defSFC (
     options: any,
     callback?: DefSfcCallback,
-  ): SFCComponent<P & E & S> {
+  ): SFCComponent<T> {
     const component = Vue.extend({
       name,
       extends: options,
-    }) as SFCComponent<P & E & S>;
+    }) as SFCComponent<T>;
 
     component.install = (vue: VueConstructor) => {
       vue.component(name, component);

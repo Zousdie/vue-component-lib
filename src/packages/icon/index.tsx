@@ -1,14 +1,16 @@
 import { sfc } from '../../utils';
 
-export type IconProps = {
-  name: string,
-  color?: string,
-  size?: string | number[],
-  rotate?: boolean,
-}
-
-export type IconEvents = {
-  onClick?(event: Event): void;
+export interface IIconComponent {
+  Props: {
+    name: string,
+    color?: string,
+    size?: string | number[],
+    rotate?: boolean,
+  }
+  Events: {
+    onClick?: (event: Event) => void;
+  }
+  Slots: {}
 }
 
 type StyleType = {
@@ -18,7 +20,7 @@ type StyleType = {
   'font-size'?: string,
 }
 
-const { def, bem } = sfc<IconProps, IconEvents>('icon');
+const { def, bem } = sfc<IIconComponent>('icon');
 
 export default def({
   props: {
