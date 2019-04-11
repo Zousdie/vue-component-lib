@@ -2,7 +2,6 @@
 import { VueConstructor } from 'vue';
 import ByJs from './packages/by-js';
 import ByTreeDep from './packages/by-tree-dep';
-import ByTsx from './packages/by-tsx';
 import Icon from './packages/icon';
 import NoStyleComponent from './packages/no-style-component';
 
@@ -15,7 +14,6 @@ declare global {
 const components = [
   ByJs,
   ByTreeDep,
-  ByTsx,
   Icon,
   NoStyleComponent,
 ];
@@ -36,7 +34,6 @@ export {
   version,
   ByJs,
   ByTreeDep,
-  ByTsx,
   Icon,
   NoStyleComponent,
 };

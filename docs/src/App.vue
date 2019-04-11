@@ -1,6 +1,6 @@
 <template>
   <div id="app">
     VUE-COMPONENT-LIB 2
-    <lib-by-js />
+    <lib-no-style-component />
   </div>
 </template>

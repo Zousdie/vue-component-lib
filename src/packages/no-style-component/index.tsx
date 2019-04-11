@@ -8,9 +8,15 @@ export default def({
 
   render () {
     return (
-      <div>
+      <div id="n-s-c">
         NO STYLE COMPONENT
-        <Icon name='no-style' />
+        <Icon
+          id="n-s-c"
+          rotate
+          name='no-style'
+          size={[20]}
+          color="red"
+        />
       </div>
     );
   },

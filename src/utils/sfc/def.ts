@@ -1,6 +1,5 @@
 import Vue, { VueConstructor } from 'vue';
 import {
-  ThisTypedComponentOptionsWithArrayProps,
   ThisTypedComponentOptionsWithRecordProps,
   ComponentOptions,
   FunctionalComponentOptions,
@@ -10,74 +9,47 @@ import {
   DefaultComputed,
   PropsDefinition,
 } from 'vue/types/options.d';
+import TsxComponent from '../../../types/sfc.d';
 
-export default function def (name: string) {
-  function defSFC<Data = object, Methods = object, Computed = object, PropNames extends string = never> (
-    options: ThisTypedComponentOptionsWithArrayProps<Vue, Data, Methods, Computed, PropNames>,
-    callback?: (
-      vue: VueConstructor,
-      component: VueConstructor<Data & Methods & Computed & Record<PropNames, any> & Vue>,
-      componentName: string,
-    ) => void,
-  ): SFCComponent<Data & Methods & Computed & Record<PropNames, any> & Vue>;
+type DefSfcCallback<T extends Vue = Vue> = (
+  vue?: VueConstructor,
+  component?: VueConstructor<T>,
+  componentName?: string,
+) => void
 
-  function defSFC<Data = object, Methods = object, Computed = object, Props = object> (
-    options: ThisTypedComponentOptionsWithRecordProps<Vue, Data, Methods, Computed, Props>,
-    callback?: (
-      vue: VueConstructor,
-      component: VueConstructor<Data & Methods & Computed & Props & Vue>,
-      componentName: string,
-    ) => void,
-  ): SFCComponent<Data & Methods & Computed & Props & Vue>;
+export default function def<P, E, S> (name: string) {
+  function defSFC<Data = object, Methods = object, Computed = object, Props = P> (
+    options: ThisTypedComponentOptionsWithRecordProps<TsxComponent<P & E & S>, Data, Methods, Computed, Props>,
+    callback?: DefSfcCallback,
+  ): SFCComponent<P & E & S, Data & Methods & Computed & Props & TsxComponent<P & E & S>>;
 
-  function defSFC<PropNames extends string = never> (
-    options: FunctionalComponentOptions<Record<PropNames, any>, PropNames[]>,
-    callback?: (
-      vue: VueConstructor,
-      component: VueConstructor<Record<PropNames, any> & Vue>,
-      componentName: string,
-    ) => void,
-  ): SFCComponent<Record<PropNames, any> & Vue>;
-
-  function defSFC<Props = object> (
+  function defSFC<Props = P> (
     options: FunctionalComponentOptions<Props, RecordPropsDefinition<Props>>,
-    callback?: (
-      vue: VueConstructor,
-      component: VueConstructor<Props & Vue>,
-      componentName: string,
-    ) => void,
-  ): SFCComponent<Props & Vue>;
+    callback?: DefSfcCallback,
+  ): SFCComponent<P & E & S, Props & TsxComponent<P & E & S>>;
 
   function defSFC (
     options: ComponentOptions<
-      Vue,
-      DefaultData<Vue>,
-      DefaultMethods<Vue>,
+      TsxComponent<P & E & S>,
+      DefaultData<TsxComponent<P & E & S>>,
+      DefaultMethods<TsxComponent<P & E & S>>,
       DefaultComputed,
-      PropsDefinition<Record<string, any>>,
-      Record<string, any>
+      PropsDefinition<P>,
+      P
     >,
-    callback?: (
-      vue: VueConstructor,
-      component: VueConstructor<Vue>,
-      componentName: string,
-    ) => void,
-  ): SFCComponent<Vue>;
+    callback?: DefSfcCallback,
+  ): SFCComponent<P & E & S>;
 
   function defSFC (
     options: any,
-    callback?: (
-      vue: VueConstructor,
-      component: VueConstructor<Vue>,
-      componentName: string,
-    ) => void,
-  ): SFCComponent<Vue> {
+    callback?: DefSfcCallback,
+  ): SFCComponent<P & E & S> {
     const component = Vue.extend({
       name,
       extends: options,
-    }) as SFCComponent;
+    }) as SFCComponent<P & E & S>;
 
-    component.install = (vue) => {
+    component.install = (vue: VueConstructor) => {
       vue.component(name, component);
 
       if (typeof callback === 'function') {
