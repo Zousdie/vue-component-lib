@@ -9,16 +9,5 @@
         <div>s2</div>
       </template>
     </lib-no-style-component>
-    <x />
   </div>
 </template>
-
-<script>
-import x from 'lib/packages/no-style-component/x';
-
-export default {
-  components: {
-    x,
-  },
-};
-</script>
