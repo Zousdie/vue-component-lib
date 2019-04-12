@@ -28,7 +28,7 @@ module.exports = merge(docsBase.default, {
     compress: true,
     publicPath: '/',
     overlay: {
-      warnings: true,
+      warnings: false,
       errors: true,
     },
     clientLogLevel: 'none',
