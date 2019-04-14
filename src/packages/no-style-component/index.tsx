@@ -2,8 +2,6 @@ import Icon from '../icon';
 import { sfc } from '../../utils';
 
 export interface INoStyleComponent {
-  Props: {},
-  Events: {},
   Slots: {
     default: ScopedSlot
     s2: ScopedSlot

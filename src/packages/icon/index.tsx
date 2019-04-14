@@ -10,7 +10,6 @@ export interface IIconComponent {
   Events: {
     onClick?: (event: Event) => void;
   }
-  Slots: {}
 }
 
 type StyleType = {

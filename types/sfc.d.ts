@@ -21,9 +21,9 @@ declare global {
   };
 
   interface ITsxComponentGeneric {
-    Props: object
-    Events: object
-    Slots: {
+    Props?: object
+    Events?: object
+    Slots?: {
       [key: string]: ScopedSlot
     }
   }
