@@ -1,9 +1,6 @@
 // This file is auto gererated by build/build-entry.js
 import { VueConstructor } from 'vue';
-import ByJs from './packages/by-js';
-import ByTreeDep from './packages/by-tree-dep';
 import Icon from './packages/icon';
-import NoStyleComponent from './packages/no-style-component';
 
 declare global {
   interface Window {
@@ -12,10 +9,7 @@ declare global {
 }
 
 const components = [
-  ByJs,
-  ByTreeDep,
   Icon,
-  NoStyleComponent,
 ];
 const version = '0.1.0';
 
@@ -32,10 +26,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 export {
   install,
   version,
-  ByJs,
-  ByTreeDep,
   Icon,
-  NoStyleComponent,
 };
 
 export default {

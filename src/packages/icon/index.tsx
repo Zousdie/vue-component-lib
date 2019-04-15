@@ -12,8 +12,8 @@ export interface IIconComponent {
   }
 }
 
-type StyleType = {
-  color: string,
+export type StyleType = {
+  color?: string,
   width?: number,
   height?: number,
   'font-size'?: string,
@@ -29,11 +29,9 @@ export default def({
     },
     color: {
       type: String,
-      default: undefined,
     },
     size: {
       type: [String, Array as () => number[]],
-      default: undefined,
     },
     rotate: {
       type: Boolean,
