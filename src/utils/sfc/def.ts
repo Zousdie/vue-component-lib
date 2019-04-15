@@ -18,12 +18,12 @@ type DefSfcCallback<T extends Vue = Vue> = (
 ) => void;
 
 export default function def<T extends ITsxComponentGeneric> (name: string) {
-  function defSFC<Data = object, Methods = object, Computed = object, Props = T['Props']> (
+  function defSFC<Data, Methods, Computed, Props extends Required<T['Props']> = Required<T['Props']>> (
     options: ThisTypedComponentOptionsWithRecordProps<TsxComponent<T>, Data, Methods, Computed, Props>,
     callback?: DefSfcCallback,
   ): SFCComponent<T, Data & Methods & Computed & Props & TsxComponent<T>>;
 
-  function defSFC<Props = T['Props']> (
+  function defSFC<Props = Required<T['Props']>> (
     options: FunctionalComponentOptions<Props, RecordPropsDefinition<Props>>,
     callback?: DefSfcCallback,
   ): SFCComponent<T, Props & TsxComponent<T>>;
@@ -34,8 +34,8 @@ export default function def<T extends ITsxComponentGeneric> (name: string) {
       DefaultData<TsxComponent<T>>,
       DefaultMethods<TsxComponent<T>>,
       DefaultComputed,
-      PropsDefinition<T['Props']>,
-      T['Props']
+      PropsDefinition<Required<T['Props']>>,
+      Required<T['Props']>
     >,
     callback?: DefSfcCallback,
   ): SFCComponent<T>;
