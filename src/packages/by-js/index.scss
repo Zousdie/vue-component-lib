@@ -1,7 +1,0 @@
-@import "../../style/global";
-
-@include b(by-js) {
-  display: inline-block;
-  line-height: $--line-height-header;
-  color: $--color-danger;
-}
