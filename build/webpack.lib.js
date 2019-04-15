@@ -7,7 +7,7 @@ module.exports = merge(baseConfig, {
   mode: 'production',
 
   entry: {
-    lib: './esm/index.js',
+    lib: './src/index.ts',
   },
 
   output: {

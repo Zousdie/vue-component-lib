@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
@@ -41,7 +42,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(js|mjs|jsx|ts|tsx)$/,
+        test: /\.m?jsx?$/,
         exclude: /node_modules/,
         use: [
           {
@@ -50,7 +51,31 @@ module.exports = {
               cacheDirectory: path.resolve(__dirname, '../node_modules/.cache/babel-loader'),
             },
           },
+          'thread-loader',
           'babel-loader',
+        ],
+      },
+      {
+        test: /\.tsx?$/,
+        use: [
+          {
+            loader: 'cache-loader',
+            options: {
+              cacheDirectory: path.resolve(__dirname, '../node_modules/.cache/ts-loader'),
+            },
+          },
+          'thread-loader',
+          'babel-loader',
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+              happyPackMode: true,
+              appendTsSuffixTo: [
+                '\\.vue$',
+              ],
+            },
+          },
         ],
       },
       {
@@ -78,6 +103,14 @@ module.exports = {
     new webpack.DefinePlugin(
       {
         'process.env.BASE_URL': '"/"',
+      },
+    ),
+    new ForkTsCheckerWebpackPlugin(
+      {
+        vue: true,
+        tslint: false,
+        formatter: 'codeframe',
+        checkSyntacticErrors: false,
       },
     ),
   ],

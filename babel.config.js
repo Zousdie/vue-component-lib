@@ -17,7 +17,6 @@ module.exports = (api) => {
         },
       ],
       '@vue/babel-preset-jsx',
-      '@babel/preset-typescript',
     ],
     plugins: [
       [

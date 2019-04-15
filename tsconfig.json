@@ -12,7 +12,6 @@
     "allowJs": true,
     "noImplicitThis": true,
     "baseUrl": ".",
-    "outDir": "dist",
     "lib": [
       "esnext",
       "dom",

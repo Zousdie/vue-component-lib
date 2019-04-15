@@ -2,7 +2,10 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const openInEditor = require('launch-editor-middleware');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const docsBase = require('./webpack.docs.base');
+
+const devPort = 8099;
 
 module.exports = merge(docsBase.default, {
   mode: 'development',
@@ -12,6 +15,11 @@ module.exports = merge(docsBase.default, {
   },
 
   plugins: [
+    new FriendlyErrorsWebpackPlugin({
+      compilationSuccessInfo: {
+        messages: [`App running at: http://localhost:${devPort}/`],
+      },
+    }),
     new webpack.HotModuleReplacementPlugin(),
   ],
 
@@ -19,7 +27,7 @@ module.exports = merge(docsBase.default, {
 
   devServer: {
     host: '0.0.0.0',
-    port: 8080,
+    port: devPort,
     quiet: true,
     hot: true,
     inline: true,
