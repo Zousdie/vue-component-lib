@@ -18,16 +18,22 @@
       "scripthost"
     ],
     "baseUrl": ".",
+    "paths": {
+      "lib/*": [
+        "../src/*"
+      ],
+      "lib": [
+        "../src/index.ts"
+      ],
+      "packages/*": [
+        "../src/packages/*"
+      ]
+    },
   },
   "include": [
-    "src/*",
-    "src/**/*",
-    "types/*"
+    "*.ts",
+    "*.tsx",
+    "unit/*",
+    "../types/*"
   ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "esm",
-    "lib"
-  ]
 }

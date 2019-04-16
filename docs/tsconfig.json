@@ -11,6 +11,12 @@
     "sourceMap": true,
     "allowJs": true,
     "noImplicitThis": true,
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost"
+    ],
     "baseUrl": ".",
     "paths": {
       "lib/*": [
@@ -23,12 +29,6 @@
         "src/*"
       ]
     },
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ]
   },
   "include": [
     "src/*",

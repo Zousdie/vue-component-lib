@@ -45,6 +45,7 @@ exports.default = merge(baseConfig, {
   resolve: {
     alias: {
       lib: path.join(__dirname, '../src'),
+      packages: path.join(__dirname, '../src/packages'),
       '@': path.join(__dirname, '../docs/src'),
     },
   },
