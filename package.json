@@ -43,7 +43,9 @@
     "dev": "cross-env NODE_ENV=development BABEL_TARGET=app webpack-dev-server --colors --config build/webpack.docs.dev.js",
     "predev": "npm run build:entry",
     "build:docs": "cross-env NODE_ENV=production BABEL_TARGET=app webpack --colors --config build/webpack.docs.prod.js",
-    "prebuild:docs": "npm run build:entry & rm -rf dist"
+    "prebuild:docs": "npm run build:entry & rm -rf dist",
+    "test": "cross-env NODE_ENV=test jest",
+    "test:watch": "cross-env NODE_ENV=test jest --watch"
   },
   "dependencies": {
     "@babel/runtime": "^7.4.3",

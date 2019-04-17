@@ -1,5 +1,6 @@
 module.exports = (api) => {
   const isProd = process.env.NODE_ENV === 'production';
+  const isTest = process.env.NODE_ENV === 'test';
   const isLib = process.env.BABEL_TARGET === 'lib';
   const isApp = process.env.BABEL_TARGET === 'app';
 
@@ -11,7 +12,7 @@ module.exports = (api) => {
         '@babel/preset-env',
         {
           loose: isLib,
-          modules: false,
+          modules: isTest ? 'commonjs' : false,
           useBuiltIns: isProd && isApp ? 'usage' : false,
           corejs: isProd && isApp ? 2 : undefined,
         },
@@ -25,7 +26,7 @@ module.exports = (api) => {
           corejs: isProd && isApp ? 2 : false,
           helpers: true,
           regenerator: true,
-          useESModules: true,
+          useESModules: !isTest,
         },
       ],
       '@babel/plugin-syntax-dynamic-import',
