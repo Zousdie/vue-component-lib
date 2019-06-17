@@ -18,16 +18,17 @@
       "scripthost"
     ],
     "baseUrl": ".",
+    "outDir": "lib",
   },
   "include": [
-    "src/*",
-    "src/**/*",
-    "types/*"
+    "packages/**/*",
+    "typings/**/*"
   ],
   "exclude": [
     "node_modules",
-    "dist",
-    "esm",
-    "lib"
+    "**/*.spec.ts",
+    "**/*.spec.js",
+    "**/*.scss",
+    "**/*.css"
   ]
 }

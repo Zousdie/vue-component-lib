@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component Icon props name 1`] = `
+<svg
+  aria-hidden="true"
+  class="v-icon"
+>
+  <use
+    xlink:href="icon"
+  />
+</svg>
+`;

@@ -1,0 +1,111 @@
+@import "../style/global";
+
+@mixin step-horizontal() {
+  z-index: 2;
+  padding: 0 $--step-padding-horizontal;
+
+  &:first-of-type {
+    padding-left: 0;
+  }
+
+  &:last-of-type {
+    padding-right: 0;
+  }
+
+  @include e(main) {
+    margin-left: $--step-main-margin-horizontal;
+  }
+
+  @include e(description) {
+    margin-top: 4px;
+  }
+}
+
+@mixin step-vertical() {
+  &:last-of-type {
+    z-index: 2;
+    padding-top: $--step-padding-vertical;
+  }
+
+  &:first-of-type {
+    @include e(head) {
+      padding-bottom: $--step-padding-vertical;
+    }
+  }
+
+  &:not(:first-of-type):not(:last-of-type) {
+    @include e(head) {
+      padding: $--step-padding-vertical 0;
+    }
+    @include e(main) {
+      padding-top: $--step-padding-vertical;
+    }
+  }
+
+  @include e(head) {
+    z-index: 2;
+    background: inherit;
+  }
+
+  @include e(main) {
+    margin-left: $--step-main-margin-vertical;
+  }
+
+  @include e(description) {
+    margin-top: 10px;
+  }
+}
+
+@include b(step) {
+  display: flex;
+  align-items: flex-start;
+  text-align: left;
+  background: inherit;
+
+  @include m(horizontal) {
+    @include step-horizontal;
+  }
+
+  @include m(vertical) {
+    @include step-vertical;
+  }
+
+  @include m(auto) {
+    @media only screen and (max-width: 767px) {
+      @include step-vertical;
+    }
+
+    @media only screen and (min-width: 768px) {
+      @include step-horizontal;
+    }
+  }
+
+  @include e(head) {
+    flex: none;
+  }
+
+  @include e(head-inner) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: $--step-head-size;
+    height: $--step-head-size;
+    font-size: 14px;
+    line-height: 1;
+    color: inherit;
+    text-align: center;
+    user-select: none;
+    background-color: #8682f9;
+    border-radius: 50%;
+  }
+
+  @include e(title) {
+    font-size: 16px;
+    line-height: $--step-head-size;
+  }
+
+  @include e(description) {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}

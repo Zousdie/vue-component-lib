@@ -1,2 +1,5 @@
 # vue-component-lib
-Vue component library demo
+
+Vue component library template.
+
+*Work in process*

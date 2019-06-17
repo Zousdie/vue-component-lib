@@ -1,0 +1,149 @@
+/*
+ * bem helper
+ * reference from Watson@waynecz https://github.com/waynecz/Watson/blob/master/src/packages/_BEM.scss
+ */
+
+$B: "" !default;
+$E: "" !default;
+
+$--namespace: "v" !default;
+$--element-separator: "__" !default;
+$--modifier-separator: "--" !default;
+$--state-prefix: "is-" !default;
+
+// 转换为字符串
+@function selectorToString($selector) {
+  $selector: inspect($selector);
+  $selector: str-slice($selector, 2, -2);
+  @return $selector;
+}
+
+// 检查 modifier, 包含 $--modifier-separator (默认：--)
+@function containModifier($selector) {
+  $selector: selectorToString($selector);
+
+  @if str-index($selector, $--modifier-separator) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+// 检查 state, 包含 $--state-prefix (默认：is-)
+@function containWhenFlag($selector) {
+  $selector: selectorToString($selector);
+
+  @if str-index($selector, "." + $--state-prefix) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+// 检查伪类，包含 :
+@function containPseudoClass($selector) {
+  $selector: selectorToString($selector);
+
+  @if str-index($selector, ":") {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+// 判断以上所有情况
+@function hitAllSpecialNestRule($selector) {
+  @return containModifier($selector) or containWhenFlag($selector) or
+    containPseudoClass($selector);
+}
+
+// B
+@mixin b($block) {
+  $B: $--namespace + "-" + $block !global;
+
+  .#{$B} {
+    @content;
+  }
+}
+
+// E
+@mixin e($element) {
+  $E: $element !global;
+  $selector: &;
+  $currentSelector: "";
+
+  @each $unit in $element {
+    $currentSelector: #{$currentSelector +
+      "." +
+      $B +
+      $--element-separator +
+      $unit +
+      ","};
+  }
+
+  @if hitAllSpecialNestRule($selector) {
+    @at-root {
+      #{$selector} {
+        #{$currentSelector} {
+          @content;
+        }
+      }
+    }
+  } @else {
+    @at-root {
+      #{$currentSelector} {
+        @content;
+      }
+    }
+  }
+}
+
+// M
+@mixin m($modifier) {
+  $selector: &;
+  $currentSelector: "";
+
+  @each $unit in $modifier {
+    $currentSelector: #{$currentSelector +
+      & +
+      $--modifier-separator +
+      $unit +
+      ","};
+  }
+
+  @at-root {
+    #{$currentSelector} {
+      @content;
+    }
+  }
+}
+
+// State
+@mixin when($state) {
+  @at-root {
+    &.#{$--state-prefix + $state} {
+      @content;
+    }
+  }
+}
+
+// 伪类
+@mixin pseudo($pseudo) {
+  @at-root #{&}#{":#{$pseudo}"} {
+    @content;
+  }
+}
+
+// 构建一个含占位符 %shared- 的类，不会被编译为css，仅用于实现继承
+@mixin share-rule($name) {
+  $rule-name: "%shared-" + $name;
+
+  @at-root #{$rule-name} {
+    @content;
+  }
+}
+
+// 实现 extend
+@mixin extend-rule($name) {
+  @extend #{"%shared-" + $name};
+}

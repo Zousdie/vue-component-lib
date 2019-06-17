@@ -1,14 +1,13 @@
 const path = require('path');
 
 module.exports = {
-  rootDir: path.resolve(__dirname, 'tests'),
   moduleFileExtensions: [
     'js',
     'jsx',
-    'json',
-    'vue',
     'ts',
     'tsx',
+    'vue',
+    'json',
   ],
   transform: {
     '^.+\\.(ts|tsx)?$': 'ts-jest',
@@ -19,28 +18,26 @@ module.exports = {
     '/node_modules/',
   ],
   moduleNameMapper: {
-    '^packages/(.*)$': '<rootDir>/../src/packages/$1',
+    '^packages/(.*)$': '<rootDir>/packages/$1',
+    '^tests/(.*)$': '<rootDir>/tests/$1',
   },
   snapshotSerializers: [
     'jest-serializer-vue',
   ],
-  testMatch: [
-    '**/tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)',
-  ],
+  setupFiles: ['<rootDir>/tests/jest.init.js'],
   testURL: 'http://localhost/',
   globals: {
     'ts-jest': {
       babelConfig: true,
     },
   },
-  setupFiles: ['<rootDir>/jest.init.js'],
-  collectCoverage: true,
-  coverageDirectory: '<rootDir>/coverage/',
-  coverageReporters: ['json', 'lcov', 'text', 'clover', 'html'],
   collectCoverageFrom: [
-    '<rootDir>/../src/**/*.{js,jsx,ts,tsx,vue}',
-    '!<rootDir>/../src/index.js',
-    '!<rootDir>/../src/index.ts',
+    'packages/**/*.{js,jsx,ts,tsx,vue}',
+    '!packages/index.ts',
     '!**/node_modules/**',
+    '!**/style/**',
   ],
+  collectCoverage: true,
+  coverageDirectory: '<rootDir>/tests/coverage/',
+  coverageReporters: ['html', 'lcov', 'text-summary', 'json', 'text', 'clover'],
 };
