@@ -14,17 +14,17 @@ const taskList = [{
   msg: 'Build script and style entry...',
   back: 'build entry files completed.',
 }, {
-  script: 'build:script',
+  script: 'build:component',
   msg: 'Compile all script...',
 }, {
   script: 'build:style',
   msg: 'Compile all style...',
 }, {
-  script: 'build:dep-style',
-  msg: 'Build style entry for esm and lib...',
+  script: 'build:style-entry',
+  msg: 'Build style entry for lib...',
   back: 'build style entry completed.',
 }, {
-  script: 'build:lib',
+  script: 'build:library',
   msg: 'Build single file library...',
 }];
 

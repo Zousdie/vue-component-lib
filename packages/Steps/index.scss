@@ -1,0 +1,72 @@
+@import "../style/global";
+
+@include b(steps) {
+  $root: &;
+
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  background-color: inherit;
+
+  &::before {
+    position: absolute;
+    content: "";
+    background: $--step-line-color;
+  }
+
+  @include m(only-one) {
+    &::before {
+      display: none;
+    }
+  }
+
+  @include m(horizontal) {
+    flex-direction: row;
+
+    &#{$root}::before {
+      top: $--step-head-size / 2;
+      right: 0;
+      left: 0;
+      height: $--step-line-size;
+      transform: translateY(-50%);
+    }
+  }
+
+  @include m(vertical) {
+    flex-direction: column;
+
+    &#{$root}::before {
+      top: 0;
+      bottom: 0;
+      left: $--step-head-size / 2;
+      width: $--step-line-size;
+      transform: translateX(-50%);
+    }
+  }
+
+  @include m(auto) {
+    flex-direction: column;
+
+    @media only screen and (max-width: 767px) {
+      &#{$root}::before {
+        top: 0;
+        bottom: 0;
+        left: $--step-head-size / 2;
+        width: $--step-line-size;
+        transform: translateX(-50%);
+      }
+    }
+
+    @media only screen and (min-width: 768px) {
+      flex-direction: row;
+
+      &#{$root}::before {
+        top: $--step-head-size / 2;
+        right: 0;
+        left: 0;
+        height: $--step-line-size;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+@import "../style/global";
+
+@include b(icon) {
+  overflow: hidden;
+  vertical-align: middle;
+  fill: currentColor;
+
+  @include size(1em);
+
+  @each $name, $value in $--icon-animations {
+    @include m($name) {
+      animation: $value;
+    }
+  }
+}

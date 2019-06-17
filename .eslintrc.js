@@ -1,38 +1,22 @@
-const { NODE_ENV } = process.env;
-
 module.exports = {
   root: true,
-
-  extends: ['airbnb-base', 'plugin:vue/recommended'],
-
-  plugins: ['@typescript-eslint'],
-
-  parserOptions: {
-    parser: '@typescript-eslint/parser',
-    ecmaVersion: 2018,
-    sourceType: 'module',
-    extraFileExtensions: ['.vue']
-  },
-
   env: {
     es6: true,
     node: true,
-    mocha: true,
-    browser: true
+    browser: true,
+    jest: true,
   },
-
-  globals: {
-    window: false,
-    document: false,
-    navigator: false
+  parserOptions: {
+    parser: '@typescript-eslint/parser',
+    project: "./tsconfig.json",
+    ecmaVersion: 2018,
+    sourceType: 'module',
   },
-
   settings: {
     'import/resolver': {
       'node': {
         'extensions': [
           '.js',
-          '.mjs',
           '.jsx',
           '.ts',
           '.tsx',
@@ -42,50 +26,30 @@ module.exports = {
     },
     'import/extensions': [
       '.js',
-      '.mjs',
       '.jsx',
       '.ts',
       '.tsx',
       '.vue'
     ]
   },
-
+  extends: ['airbnb-base', 'plugin:vue/recommended'],
+  plugins: ['@typescript-eslint'],
   rules: {
-    'no-console': NODE_ENV === 'production'
-      ? ['error', { allow: ['warn', 'error'] }]
-      : 'off',
-    'no-debugger': NODE_ENV === 'production'
-      ? 'error'
-      : 'off',
     'linebreak-style': ['error', 'unix'],
-    'max-len': ['error', { code: 120 }],
+    'max-len': ['error', { code: 150 }],
     'no-param-reassign': 'off',
+    'no-undef': 'off',
+    'no-unused-vars': 'off',
     'func-names': 'off',
-    'space-before-function-paren': [
-      'error',
-      {
-        anonymous: 'always',
-        named: 'always',
-        asyncArrow: 'always',
-      },
-    ],
-    'import/extensions': [
-      'error',
-      'always',
-      {
-        js: 'never',
-        mjs: 'never',
-        jsx: 'never',
-        ts: 'never',
-        tsx: 'never'
-      }
-    ],
-    '@typescript-eslint/no-unused-vars': [
-      'error',
-      {
-        args: 'none'
-      }
-    ],
+    'strict': 'off',
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'import/extensions': ['error', 'always', {
+      js: 'never',
+      jsx: 'never',
+      ts: 'never',
+      tsx: 'never'
+    }],
     'vue/html-closing-bracket-newline': 2,
     'vue/singleline-html-element-content-newline': 0,
     'vue/multiline-html-element-content-newline': 0,
