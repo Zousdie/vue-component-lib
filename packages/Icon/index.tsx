@@ -12,7 +12,7 @@ export interface IIconComponent {
   }
 }
 
-export type StyleType = {
+export type IconStyles = {
   color?: string,
   width?: string,
   height?: string,
@@ -41,23 +41,30 @@ export default def({
     },
   },
 
+  computed: {
+    styles() {
+      const res: IconStyles = {
+        color: this.color,
+      };
+
+      if (typeof this.size === 'string') {
+        res['font-size'] = this.size;
+      }
+
+      if (Array.isArray(this.size) && this.size.length > 0) {
+        [res.width, res.height = convert(this.size[0])] = (this.size as []).map(convert);
+      }
+
+      return res;
+    },
+  },
+
   render() {
-    const styles: StyleType = {
-      color: this.color,
-    };
-
-    if (typeof this.size === 'string') {
-      styles['font-size'] = this.size;
-    }
-    if (Array.isArray(this.size) && this.size.length > 0) {
-      [styles.width, styles.height = convert(this.size[0])] = (this.size as []).map(convert);
-    }
-
     return (
       <svg
         aria-hidden="true"
         class={bem({ rotate: this.rotate })}
-        style={styles}
+        style={this.styles}
         onClick={() => { this.$emit('click'); }}
       >
         <use xlinkHref={this.name}></use>

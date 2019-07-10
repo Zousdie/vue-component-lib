@@ -71,41 +71,41 @@
   }
 
   @include m(auto) {
-    @media only screen and (max-width: 767px) {
+    @media only screen and (max-width: $--step-res-breakpoint - 1) {
       @include step-vertical;
     }
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $--step-res-breakpoint) {
       @include step-horizontal;
     }
   }
 
   @include e(head) {
     flex: none;
+    color: $--step-head-color;
   }
 
   @include e(head-inner) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: $--step-head-size;
-    height: $--step-head-size;
-    font-size: 14px;
+    font-size: $--step-head-font-size;
     line-height: 1;
     color: inherit;
     text-align: center;
     user-select: none;
-    background-color: #8682f9;
+    background-color: $--step-head-bg-color;
     border-radius: 50%;
+    @include size($--step-head-size);
   }
 
   @include e(title) {
-    font-size: 16px;
+    font-size: $--step-title-font-size;
     line-height: $--step-head-size;
   }
 
   @include e(description) {
-    font-size: 12px;
-    line-height: 18px;
+    font-size: $--step-desc-font-size;
+    line-height: $--step-desc-line-height;
   }
 }

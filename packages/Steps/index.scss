@@ -47,7 +47,7 @@
   @include m(auto) {
     flex-direction: column;
 
-    @media only screen and (max-width: 767px) {
+    @media only screen and (max-width: $--step-res-breakpoint - 1) {
       &#{$root}::before {
         top: 0;
         bottom: 0;
@@ -57,7 +57,7 @@
       }
     }
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $--step-res-breakpoint) {
       flex-direction: row;
 
       &#{$root}::before {

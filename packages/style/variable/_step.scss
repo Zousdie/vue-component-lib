@@ -1,7 +1,20 @@
-$--step-line-color: #989898 !default;
-$--step-line-size: 2px !default;
+$--step-res-breakpoint: 768px !default;
+
 $--step-padding-horizontal: 6px !default;
 $--step-padding-vertical: 6px !default;
-$--step-head-size: 26px !default;
+
 $--step-main-margin-horizontal: 8px !default;
-$--step-main-margin-vertical: 12px !default;
+$--step-main-margin-vertical: 8px !default;
+
+$--step-line-color: #989898 !default;
+$--step-line-size: 2px !default;
+
+$--step-head-size: 26px !default;
+$--step-head-font-size: 14px !default;
+$--step-head-color: #fff !default;
+$--step-head-bg-color: #8682f9 !default;
+
+$--step-title-font-size: 16px !default;
+
+$--step-desc-font-size: 12px !default;
+$--step-desc-line-height: 18px !default;
