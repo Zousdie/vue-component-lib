@@ -3,13 +3,13 @@
  * reference from Watson@waynecz https://github.com/waynecz/Watson/blob/master/src/packages/_BEM.scss
  */
 
-$B: "" !default;
-$E: "" !default;
-
 $--namespace: "v" !default;
 $--element-separator: "__" !default;
 $--modifier-separator: "--" !default;
 $--state-prefix: "is-" !default;
+
+$B: "" !default;
+$E: "" !default;
 
 // 转换为字符串
 @function selectorToString($selector) {
@@ -53,8 +53,7 @@ $--state-prefix: "is-" !default;
 
 // 判断以上所有情况
 @function hitAllSpecialNestRule($selector) {
-  @return containModifier($selector) or containWhenFlag($selector) or
-    containPseudoClass($selector);
+  @return containModifier($selector) or containWhenFlag($selector) or containPseudoClass($selector);
 }
 
 // B
@@ -73,12 +72,7 @@ $--state-prefix: "is-" !default;
   $currentSelector: "";
 
   @each $unit in $element {
-    $currentSelector: #{$currentSelector +
-      "." +
-      $B +
-      $--element-separator +
-      $unit +
-      ","};
+    $currentSelector: #{$currentSelector + "." + $B + $--element-separator + $unit + ","};
   }
 
   @if hitAllSpecialNestRule($selector) {
@@ -104,11 +98,7 @@ $--state-prefix: "is-" !default;
   $currentSelector: "";
 
   @each $unit in $modifier {
-    $currentSelector: #{$currentSelector +
-      & +
-      $--modifier-separator +
-      $unit +
-      ","};
+    $currentSelector: #{$currentSelector + & + $--modifier-separator + $unit + ","};
   }
 
   @at-root {

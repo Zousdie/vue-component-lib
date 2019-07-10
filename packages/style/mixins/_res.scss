@@ -1,0 +1,34 @@
+$--sm: 576px !default;
+$--md: 768px !default;
+$--lg: 992px !default;
+$--xl: 1200px !default;
+$--xll: 1920px !default;
+
+$--res-bp: (
+  "landscape": "orientation: landscape",
+  "portrait": "orientation: portrait",
+  "xs": "max-width: #{$--sm - 1}",
+  "sm": "min-width: #{$--sm}",
+  "md": "min-width: #{$--md}",
+  "lg": "min-width: #{$--lg}",
+  "xl": "min-width: #{$--xl}",
+  "xll": "min-width: #{$--xll}",
+  "sm-only": "min-width: #{$--sm}) and (max-width: #{$--md - 1}",
+  "sm-and-down": "max-width: #{$--md - 1}",
+  "md-only": "min-width: #{$--md}) and (max-width: #{$--lg - 1}",
+  "md-and-down": "max-width: #{$--lg - 1}",
+  "lg-only": "min-width: #{$--lg}) and (max-width: #{$--xl - 1}",
+  "lg-and-down": "max-width: #{$--xl - 1}",
+  "xl-only": "min-width: #{$--xl}) and (max-width: #{$--xll - 1}",
+  "xl-and-down": "max-width: #{$--xll - 1}"
+) !default;
+
+@mixin res($key, $map: $--res-bp) {
+  @if map-has-key($map, $key) {
+    @media only screen and (#{map-get($map, $key)}) {
+      @content;
+    }
+  } @else {
+    @warn "Undefeined points: `#{$map}`, `#{$key}`";
+  }
+}

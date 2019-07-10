@@ -1,8 +1,6 @@
 // font
-$--font-family: "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI",
-  "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue",
-  Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-  "Segoe UI Symbol" !default;
+$--font-family: PingFangSC-Light, "PingFang SC", Helvetica, Tahoma, Arial, "Microsoft YaHei", "Hiragino Sans GB",
+  "WenQuanYi Micro Hei", sans-serif !default;
 
 // z-index
 $--index-normal: 1 !default;
