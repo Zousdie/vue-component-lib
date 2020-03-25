@@ -26,16 +26,20 @@
   "module": "esm/index.js",
   "style": "lib/index.css",
   "sideEffects": [
+    "esm/**/style/*",
+    "lib/**/style/*",
     "*.css",
     "*.scss"
   ],
   "scripts": {
     "bootstrap": "yarn || npm i",
     "lint": "eslint --fix ./packages --ext .js,.jsx,.ts,.tsx,.vue && stylelint --fix packages/**/*.scss",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "dev": "vuepress dev docs",
     "build:docs": "vuepress build docs",
     "build:entry": "node build/build-entry.js",
-    "build:component": "rollup -c build/rollup.script.js --environment NODE_ENV:production,TARGET:component",
+    "build:component-esm": "rollup -c build/rollup.script.js --environment NODE_ENV:production,TARGET:component",
+    "build:component-cjs": "rollup -c build/rollup.script.js --environment NODE_ENV:production,TARGET:component,BABEL_MODULE:cjs",
     "build:library": "rollup -c build/rollup.library.js --environment NODE_ENV:production,TARGET:library",
     "build:style": "gulp --gulpfile build/gulp.style.js",
     "build:style-entry": "node build/build-style-entry.js",
@@ -43,7 +47,9 @@
     "clean": "rm -rf esm & rm -rf lib",
     "test": "cross-env NODE_ENV=test jest",
     "test:watch": "cross-env NODE_ENV=test jest --watch",
-    "test:coverage": "serve tests/coverage -s"
+    "test:coverage": "serve tests/coverage -s",
+    "release": "sh ./build/release.sh",
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
     "vue": "^2.6.10"
@@ -72,6 +78,7 @@
     "chalk": "^2.4.2",
     "cross-env": "^5.2.0",
     "cssnano": "^4.1.10",
+    "cz-conventional-changelog": "^3.0.2",
     "dependency-tree": "^7.0.2",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
@@ -114,17 +121,23 @@
   },
   "husky": {
     "hooks": {
+      "commit-msg": "commitlint -e $GIT_PARAMS",
       "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,vue}": [
-      "eslint",
+      "eslint --fix",
       "git add"
     ],
     "*.{scss,sass,css,vue}": [
-      "stylelint",
+      "stylelint --fix",
       "git add"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

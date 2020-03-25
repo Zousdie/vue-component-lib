@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component OnlyClient render placeholder 1`] = `
+<div>
+  
+            only render on client1
+            only render on client2
+            
+</div>
+`;
+
+exports[`Component OnlyClient render ssr 1`] = `
+<div>
+  <!---->
+</div>
+`;

@@ -1,0 +1,41 @@
+@import "../style/global";
+
+$max-span: 12;
+$res-list: ("xs", "sm", "md", "lg", "xl", "xll");
+
+@include b(col) {
+  box-sizing: border-box;
+  float: left;
+
+  &-0 {
+    display: none;
+  }
+
+  @for $i from 0 through $max-span {
+    &-#{$i} {
+      width: (1 / $max-span * $i * 100) * 1%;
+    }
+
+    &-offset-#{$i} {
+      margin-left: (1 / $max-span * $i * 100) * 1%;
+    }
+  }
+
+  @each $item in $res-list {
+    @include res($item) {
+      &-#{$item}-0 {
+        display: none;
+      }
+
+      @for $i from 0 through $max-span {
+        &-#{$item}-#{$i} {
+          width: (1 / $max-span * $i * 100) * 1%;
+        }
+
+        &-#{$item}-offset-#{$i} {
+          margin-left: (1 / $max-span * $i * 100) * 1%;
+        }
+      }
+    }
+  }
+}

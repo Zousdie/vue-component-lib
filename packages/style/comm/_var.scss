@@ -7,6 +7,11 @@ $--index-normal: 1 !default;
 $--index-top: 1000 !default;
 $--index-popper: 2000 !default;
 
+// transition and animation
+$--transition-duration-base: 0.3s;
+$--transition-duration-fast: 0.2s;
+$--transition-timing-base: ease-in-out;
+
 // color
 $--color-white: #fff !default;
 $--color-black: #000 !default;

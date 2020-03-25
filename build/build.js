@@ -14,8 +14,11 @@ const taskList = [{
   msg: 'Build script and style entry...',
   back: 'build entry files completed.',
 }, {
-  script: 'build:component',
-  msg: 'Compile all script...',
+  script: 'build:component-esm',
+  msg: 'Compile all script to es module...',
+}, {
+  script: 'build:component-cjs',
+  msg: 'Compile all script to commonjs...',
 }, {
   script: 'build:style',
   msg: 'Compile all style...',

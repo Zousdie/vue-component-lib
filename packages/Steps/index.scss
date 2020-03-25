@@ -25,8 +25,8 @@
 
     &#{$root}::before {
       top: $--step-head-size / 2;
-      right: 0;
-      left: 0;
+      right: $--step-head-size;
+      left: $--step-head-size;
       height: $--step-line-size;
       transform: translateY(-50%);
     }
@@ -62,8 +62,8 @@
 
       &#{$root}::before {
         top: $--step-head-size / 2;
-        right: 0;
-        left: 0;
+        right: $--step-head-size;
+        left: $--step-head-size;
         height: $--step-line-size;
         transform: translateY(-50%);
       }

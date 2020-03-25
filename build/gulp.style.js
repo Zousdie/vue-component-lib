@@ -7,7 +7,8 @@ const Fiber = require('fibers');
 
 gulp.task('copy', () => gulp
   .src(['../packages/**/*.scss'])
-  .pipe(gulp.dest('../lib')));
+  .pipe(gulp.dest('../lib'))
+  .pipe(gulp.dest('../esm')));
 
 gulp.task('compile', () => gulp
   .src(['../packages/**/*.scss'])
@@ -23,9 +24,13 @@ gulp.task('compile', () => gulp
       outputStyle: 'compressed',
       linefeed: 'lf',
       fiber: Fiber,
-    }).on('error', sass.logError),
+    }).on('error', (err) => {
+      sass.logError(err);
+      throw err;
+    }),
   )
   .pipe(postcss())
-  .pipe(gulp.dest('../lib')));
+  .pipe(gulp.dest('../lib'))
+  .pipe(gulp.dest('../esm')));
 
 gulp.task('default', gulp.series('copy', 'compile'));

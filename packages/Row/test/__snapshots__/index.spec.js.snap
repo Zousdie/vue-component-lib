@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component render Snapshot 1`] = `
+<div>
+  <div
+    class="v-row"
+    style="margin-left: -5px; margin-right: -5px;"
+  >
+    <div
+      class="v-col v-col-12"
+      style="padding-left: 5px; padding-right: 5px;"
+    >
+      
+              all col
+            
+    </div>
+  </div>
+   
+  <div
+    class="v-row"
+  >
+    <div
+      class="v-col v-col-4"
+    >
+      
+              span 4
+            
+    </div>
+     
+    <div
+      class="v-col v-col-4 v-col-offset-6"
+    >
+      
+              span 4 and offset 6
+            
+    </div>
+  </div>
+   
+  <div
+    class="v-row"
+  >
+    <div
+      class="v-col v-col-12 v-col-xll-4"
+    >
+      
+              xll 4
+            
+    </div>
+  </div>
+   
+  <div
+    class="v-row"
+  >
+    <div
+      class="v-col v-col-12 v-col-xll-4 v-col-xll-offset-2"
+    >
+      
+              xll obj 4 and offset 2
+            
+    </div>
+     
+    <div
+      class="v-col v-col-12 v-col-xll-4 v-col-xll-offset-2"
+    >
+      
+              xll obj 4 and offset 2
+            
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Component render flex mode 1`] = `
+<div
+  class="v-row v-row--flex"
+>
+  <div
+    class="v-col v-col-12"
+  >
+    flex mode
+  </div>
+</div>
+`;

@@ -23,6 +23,23 @@ $--res-bp: (
   "xl-and-down": "max-width: #{$--xll - 1}"
 ) !default;
 
+$--res-breakpoints: (
+  "xs-only": "max-width: #{$--sm - 1}",
+  "sm-and-up": "min-width: #{$--sm}",
+  "sm-only": "min-width: #{$--sm}) and (max-width: #{$--md - 1}",
+  "sm-and-down": "max-width: #{$--md - 1}",
+  "md-and-up": "min-width: #{$--md}",
+  "md-only": "min-width: #{$--md}) and (max-width: #{$--lg - 1}",
+  "md-and-down": "max-width: #{$--lg - 1}",
+  "lg-and-up": "min-width: #{$--lg}",
+  "lg-only": "min-width: #{$--lg}) and (max-width: #{$--xl - 1}",
+  "lg-and-down": "max-width: #{$--xl - 1}",
+  "xl-and-up": "min-width: #{$--xl}",
+  "xl-only": "min-width: #{$--xl}) and (max-width: #{$--xll - 1}",
+  "xl-and-down": "max-width: #{$--xll - 1}",
+  "xll-only": "min-width: #{$--xll}"
+) !default;
+
 @mixin res($key, $map: $--res-bp) {
   @if map-has-key($map, $key) {
     @media only screen and (#{map-get($map, $key)}) {

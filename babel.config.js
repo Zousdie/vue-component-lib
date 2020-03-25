@@ -1,8 +1,5 @@
 module.exports = (api) => {
-  // const isTest = process.env.NODE_ENV === 'test';
-  const isProd = process.env.NODE_ENV === 'production';
-
-  api.cache.using(() => isProd);
+  if (api) api.cache(false);
 
   const plugins = [
     '@babel/plugin-syntax-dynamic-import',
@@ -17,14 +14,19 @@ module.exports = (api) => {
         corejs: false,
         helpers: true,
         regenerator: true,
-        useESModules: true,
+        useESModules: process.env.BABEL_MODULE !== 'cjs' && process.env.NODE_ENV !== 'test',
       },
     ]);
   }
 
   return {
     presets: [
-      '@babel/preset-env',
+      [
+        '@babel/preset-env',
+        {
+          loose: true,
+        },
+      ],
       '@vue/babel-preset-jsx',
     ],
     plugins,

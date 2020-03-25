@@ -1,0 +1,16 @@
+@import "../style/global";
+
+@include b(row) {
+  box-sizing: border-box;
+
+  @include clear;
+
+  @include m(flex) {
+    display: flex;
+    flex-wrap: wrap;
+
+    @include b(col) {
+      flex: auto;
+    }
+  }
+}

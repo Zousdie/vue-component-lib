@@ -1,6 +1,5 @@
 const path = require('path');
 const fs = require('fs-extra');
-const packageJson = require('../package.json');
 const components = require('./utils').components();
 
 const outPath = path.resolve(__dirname, '../packages');
@@ -25,7 +24,6 @@ declare global {
 const components = [
   ${componentList},
 ];
-const version = '${process.env.VERSION || packageJson.version}';
 
 const install = (Vue: VueConstructor) => {
   components.forEach((component) => {
@@ -40,13 +38,11 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 export {
   install,
-  version,
   ${componentList},
 };
 
 export default {
   install,
-  version,
 };
 `;
 

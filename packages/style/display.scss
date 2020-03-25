@@ -1,0 +1,11 @@
+@import "mixins/res";
+
+.hidden {
+  @each $break-point-name, $value in $--res-breakpoints {
+    &-#{$break-point-name} {
+      @include res($break-point-name, $--res-breakpoints) {
+        display: none !important;
+      }
+    }
+  }
+}

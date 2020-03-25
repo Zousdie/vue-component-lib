@@ -6,7 +6,6 @@ import vue from 'rollup-plugin-vue';
 import babel from 'rollup-plugin-babel';
 import typescript from 'rollup-plugin-typescript2';
 import { eslint } from 'rollup-plugin-eslint';
-import { terser } from 'rollup-plugin-terser';
 
 const {
   isDir,
@@ -60,19 +59,20 @@ const componentPlugin = [
     runtimeHelpers: true,
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   }),
-  terser(),
 ];
 
 export default generateModules(srcPath).map(p => ({
   input: p,
-  output: [{
-    dir: path.dirname(p).replace(srcPath, esmOutDir),
-    format: 'esm',
-  }, {
-    dir: path.dirname(p).replace(srcPath, cjsOutDir),
-    format: 'cjs',
-    exports: 'named',
-  }],
+  output: process.env.BABEL_MODULE === 'cjs'
+    ? {
+      dir: path.dirname(p).replace(srcPath, cjsOutDir),
+      format: 'cjs',
+      exports: 'named',
+    }
+    : {
+      dir: path.dirname(p).replace(srcPath, esmOutDir),
+      format: 'esm',
+    },
   external: id => !(/\?rollup-plugin-vue=/.test(id) || isVue(id)),
   plugins: componentPlugin,
 }));

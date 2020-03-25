@@ -3,6 +3,8 @@ const fs = require('fs-extra');
 const dependencyTree = require('dependency-tree');
 const components = require('./utils').components();
 
+const blackList = ['OnlyClient'];
+
 const search = (dt, comDir, style) => {
   let dependentModules = [];
 
@@ -27,14 +29,17 @@ const search = (dt, comDir, style) => {
 
   return dependentModules;
 };
-const formatStyleContent = raw => raw.map(o => `import '${o}';`).join('\n');
 
 const analysisDir = path.resolve(__dirname, '../lib');
-const outputDir = [
-  path.resolve(__dirname, '../lib'),
-];
+const analysisOutput = [{
+  dir: path.resolve(__dirname, '../lib'),
+  func: raw => raw.map(o => `require('${o}');`).join('\n'),
+}, {
+  dir: path.resolve(__dirname, '../esm'),
+  func: raw => raw.map(o => `import '${o}';`).join('\n'),
+}];
 
-components.forEach((item) => {
+components.filter(i => !blackList.includes(i)).forEach((item) => {
   const comDir = path.resolve(analysisDir, item);
   const dt = dependencyTree({
     directory: analysisDir,
@@ -47,11 +52,11 @@ components.forEach((item) => {
     scss: 'index.scss',
   });
 
-  const style = ['../../base.css'].concat(deps.map(it => it.style));
-  const scss = ['../../base.scss'].concat(deps.map(it => it.scss));
+  const style = ['../../base.css'].concat(deps.map(it => it.style)).filter((it, index, arr) => arr.indexOf(it) === index);
+  const scss = ['../../base.scss'].concat(deps.map(it => it.scss)).filter((it, index, arr) => arr.indexOf(it) === index);
 
-  outputDir.forEach((p) => {
-    fs.outputFileSync(path.join(p, item, 'style', 'index.js'), formatStyleContent(style));
-    fs.outputFileSync(path.join(p, item, 'style', 'scss.js'), formatStyleContent(scss));
+  analysisOutput.forEach((p) => {
+    fs.outputFileSync(path.join(p.dir, item, 'style', 'index.js'), p.func(style));
+    fs.outputFileSync(path.join(p.dir, item, 'style', 'scss.js'), p.func(scss));
   });
 });
